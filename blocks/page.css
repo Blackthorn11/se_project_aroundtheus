@@ -2,9 +2,17 @@
   max-width: 1280px;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 0 200px 0;
   background-color: black;
   color: white;
+  display: flex;
+  padding: 0 200px 0;
+}
+@media screen and (max-width: 768px) {
+  .page {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0;
+  }
 }
 @media screen and (max-width: 320px) {
   .page {
@@ -12,4 +20,8 @@
     margin: 0 auto;
     padding: 0;
   }
+}
+.content {
+  justify-content: center;
+  width: 100%;
 }
