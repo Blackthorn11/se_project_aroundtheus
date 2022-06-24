@@ -45,14 +45,14 @@
   opacity: 0.5;
 }
 @media screen and (max-width: 880px) {
-  .cards {
+  .cards__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 0 auto;
   }
 }
 @media screen and (max-width: 580px) {
-  .cards {
+  .cards__list {
     display: grid;
     grid-template-columns: 1fr;
     max-width: 282px;
