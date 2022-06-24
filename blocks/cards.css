@@ -45,14 +45,14 @@
 .card__like-button:hover {
   opacity: 0.5;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
   .cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 0 auto;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 580px) {
   .cards {
     display: grid;
     grid-template-columns: 1fr;
