@@ -10,15 +10,11 @@
 @media screen and (max-width: 880px) {
   .page {
     max-width: 768px;
-    margin: 0 auto;
-    padding: 0;
   }
 }
 @media screen and (max-width: 580px) {
   .page {
     max-width: 320px;
-    margin: 0 auto;
-    padding: 0;
   }
 }
 .content {
