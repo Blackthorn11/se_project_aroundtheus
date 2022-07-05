@@ -1,0 +1,113 @@
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 9;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+}
+.modal_opened {
+  display: block;
+}
+.modal__container {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  width: 430px;
+  height: 330px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal__form {
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.modal__form__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin: 34px 64px 54px 36px;
+}
+.modal__form__fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+  padding: 0;
+  margin: 0;
+}
+.modal__form__input {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0;
+  padding-bottom: 13px;
+  margin-right: 36px;
+  margin-left: 36px;
+}
+.modal__form__button {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  background: #000000;
+  border-radius: 2px;
+  width: 358px;
+  height: 50.15px;
+  margin: 48px 36px 36px 36px;
+  cursor: pointer;
+  padding: 0;
+}
+.modal__exit-button {
+  position: absolute;
+  height: 40px;
+  border: none;
+  right: -10%;
+  top: -10%;
+  background: none;
+}
+
+.modal__exit-button:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 880px) {
+  .modal__container {
+    width: 282px;
+    height: 322px;
+  }
+  .modal__form__button {
+    width: 238px;
+    height: 46px;
+    margin: 45px 22px 25px 22px;
+  }
+  .modal__exit-button {
+    top: -15%;
+    right: 0%;
+  }
+  .modal__form__title {
+    margin: 25px 22px 75px 22px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .modal__form__input {
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}
