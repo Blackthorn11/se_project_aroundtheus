@@ -33,60 +33,13 @@
       </section>
       <section class="cards">
         <ul class="cards__list">
-          <li class="card">
-            <img
-              alt="Yosemite Valley's image"
-              class="card__image"
-              src="./images/yosemite-valley.png"
-            />
-            <h2 class="card__title">Yosemite Valley</h2>
-            <button type="button" class="card__like-button"></button>
-          </li>
-          <li class="card">
-            <img
-              alt="Lake Louise's image"
-              class="card__image"
-              src="./images/lake-louise.png"
-            />
-            <h2 class="card__title">Lake Louise</h2>
-            <button type="button" class="card__like-button"></button>
-          </li>
-          <li class="card">
-            <img
-              alt="Bald Mountains' image"
-              class="card__image"
-              src="./images/bald-mountains.png"
-            />
-            <h2 class="card__title">Bald Mountains</h2>
-            <button type="button" class="card__like-button"></button>
-          </li>
-          <li class="card">
-            <img
-              alt="Latemar's image"
-              class="card__image"
-              src="./images/latemar.png"
-            />
-            <h2 class="card__title">Latemar</h2>
-            <button type="button" class="card__like-button"></button>
-          </li>
-          <li class="card">
-            <img
-              alt="Vanoise National Park's image"
-              class="card__image"
-              src="./images/vanoise-national-park.png"
-            />
-            <h2 class="card__title">Vanoise National Park</h2>
-            <button type="button" class="card__like-button"></button>
-          </li>
-          <li class="card">
-            <img
-              alt="Lago di Braies"
-              class="card__image"
-              src="./images/lago-di-braies.png"
-            />
-            <h2 class="card__title">Lago di Braies</h2>
-            <button type="button" class="card__like-button"></button>
-          </li>
+          <template id="cardTemplate">
+            <li class="card">
+              <img alt="" class="card__image" src="" />
+              <h2 class="card__title"></h2>
+              <button type="button" class="card__like-button"></button>
+            </li>
+          </template>
         </ul>
       </section>
       <footer class="footer">
@@ -107,6 +60,8 @@
               name="name"
               value="Jacques Cousteau"
               required
+              id="nameInput"
+              placeholder="Name"
             />
             <input
               type="text"
@@ -114,6 +69,8 @@
               name="description"
               value="Explorer"
               required
+              id="jobInput"
+              placeholder="Profession"
             />
           </fieldset>
           <fieldset class="modal__form__fieldset">
