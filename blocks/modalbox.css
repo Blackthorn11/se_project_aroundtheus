@@ -73,6 +73,7 @@
   cursor: pointer;
   padding: 0;
 }
+
 .modal__exit-button {
   position: absolute;
   height: 40px;

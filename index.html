@@ -29,7 +29,7 @@
           </div>
           <p class="profile__description">Explorer</p>
         </div>
-        <button type="button" class="profile__add"></button>
+        <button type="button" class="profile__add" id="openModal2"></button>
       </section>
       <section class="cards">
         <ul class="cards__list">
@@ -37,6 +37,7 @@
             <li class="card">
               <img alt="" class="card__image" src="" />
               <h2 class="card__title"></h2>
+              <button type="button" class="card__delete-button"></button>
               <button type="button" class="card__like-button"></button>
             </li>
           </template>
@@ -46,16 +47,16 @@
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
     </main>
-    <div class="modal">
+    <div class="modal" id="profileEdit">
       <div class="modal__container">
-        <button type="button" id="closeModal" class="modal__exit-button">
+        <button type="button" class="modal__exit-button" id="profileExitBtn">
           <img
             src="./images/Close-icon.svg"
             alt="exit button"
             class="modal__exit-button-image"
           />
         </button>
-        <form class="modal__form">
+        <form class="modal__form" id="edit-form">
           <h3 class="modal__form-title">Edit profile</h3>
           <fieldset class="modal__form-fieldset">
             <input
@@ -81,6 +82,57 @@
             <button type="submit" class="modal__form-button">Save</button>
           </fieldset>
         </form>
+      </div>
+    </div>
+    <div class="modal" id="cardAdd">
+      <div class="modal__container">
+        <button type="button" class="modal__exit-button" id="addExitBtn">
+          <img
+            src="./images/Close-icon.svg"
+            alt="exit button"
+            class="modal__exit-button-image"
+          />
+        </button>
+        <form class="modal__form" id="add-form">
+          <h3 class="modal__form-title">New Place</h3>
+          <fieldset class="modal__form-fieldset">
+            <input
+              type="text"
+              class="modal__form-input"
+              name="title"
+              value=""
+              required
+              id="nameInput"
+              placeholder="Title"
+            />
+            <input
+              type="url"
+              class="modal__form-input"
+              name="link"
+              value=""
+              required
+              id="jobInput"
+              placeholder="Image link"
+            />
+          </fieldset>
+          <fieldset class="modal__form-fieldset">
+            <button type="submit" class="modal__form-button">Create</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="image-preview">
+      <div
+        class="modal__content modal__content-image-preview"
+        id="image-preview-content"
+      >
+        <button
+          class="modal__close-button modal__close-preview"
+          id="image-preview_close"
+          type="button"
+        ></button>
+        <img class="card__image" alt="#" src="#" />
+        <h3 class="card__title"></h3>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
