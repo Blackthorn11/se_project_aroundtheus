@@ -101,6 +101,18 @@
   cursor: pointer;
 }
 
+.modal__preview-image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+.modal__preview-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  font-style: normal;
+  color: #ffffff;
+}
+
 @media screen and (max-width: 880px) {
   .modal__container {
     width: 282px;
