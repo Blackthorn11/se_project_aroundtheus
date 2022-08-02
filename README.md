@@ -15,7 +15,7 @@ This is the third project of the Web Development program at Practicum. It was cr
 
 Right now the web-page only supports two screen resolutions (1280 and 320), adding more resolutions to support more devices is in order next.
 
-Javascript functionality.
+More Javascript functionality.
 
 ## Github Pages link
 

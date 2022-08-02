@@ -122,17 +122,22 @@
       </div>
     </div>
     <div class="modal" id="image-preview">
-      <div
-        class="modal__content modal__content-image-preview"
-        id="image-preview-content"
-      >
+      <div class="modal__preview-container" id="image-preview-content">
         <button
-          class="modal__close-button modal__close-preview"
+          class="modal__exit-button"
           id="image-preview_close"
           type="button"
-        ></button>
-        <img class="card__image" alt="#" src="#" />
-        <h3 class="card__title"></h3>
+        >
+          <img
+            src="./images/Close-icon.svg"
+            alt="exit button"
+            class="modal__exit-button-image"
+          />
+        </button>
+        <div>
+          <img class="card__preview-image" alt="" src="" />
+          <h3 class="card__preview-title"></h3>
+        </div>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
