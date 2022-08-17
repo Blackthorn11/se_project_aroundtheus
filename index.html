@@ -58,25 +58,34 @@
         </button>
         <form class="modal__form" id="edit-form">
           <h3 class="modal__form-title">Edit profile</h3>
-          <fieldset class="modal__form-fieldset">
-            <input
-              type="text"
-              class="modal__form-input"
-              name="name"
-              value="Jacques Cousteau"
-              required
-              id="nameInput"
-              placeholder="Name"
-            />
-            <input
-              type="text"
-              class="modal__form-input"
-              name="description"
-              value="Explorer"
-              required
-              id="jobInput"
-              placeholder="Profession"
-            />
+            <fieldset class="modal__form-fieldset">
+              <input
+                type="text"
+                class="modal__form-input"
+                name="name"
+                value="Jacques Cousteau"
+                required
+                minlength="2"
+                maxlength="40"
+                id="nameInput"
+                placeholder="Name"
+              />
+              <span class="popup__error" id="nameInput-error"> </span>
+            </fieldset>
+            <fieldset class="modal__form-fieldset">
+              <input
+                type="text"
+                class="modal__form-input"
+                name="description"
+                value="Explorer"
+                required
+                minlength="2"
+                maxlength="200"
+                id="jobInput"
+                placeholder="Profession"
+              />
+              <span class="popup__error" id="jobInput-error"></span>
+            </fieldset>
           </fieldset>
           <fieldset class="modal__form-fieldset">
             <button type="submit" class="modal__form-button">Save</button>
@@ -102,19 +111,27 @@
               name="title"
               value=""
               required
+              id="modal-add-title"
+              minlength="1"
+              maxlength="30"
               placeholder="Title"
             />
+            <span class="popup__error" id="modal-add-title-error"></span>
+            </fieldset>
+            <fieldset class="modal__form-fieldset">
             <input
               type="url"
               class="modal__form-input"
               name="link"
               value=""
               required
+              id="modal-add-link"
               placeholder="Image link"
             />
+            <span class="popup__error" id="modal-add-link-error"></span>
           </fieldset>
           <fieldset class="modal__form-fieldset">
-            <button type="submit" class="modal__form-button">Create</button>
+            <button type="submit" class="modal__form-button modal__form-button_disabled" disabled>Create</button>
           </fieldset>
         </form>
       </div>
@@ -139,5 +156,6 @@
       </div>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>

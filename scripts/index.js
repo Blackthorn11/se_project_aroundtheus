@@ -44,6 +44,14 @@ function closeModalWindow(modalWindow) {
   modalWindow.classList.remove("modal_opened");
 }
 
+function closeModalWithOverlay(evt) {
+  if (evt.target.classList.contains("modal_opened")) {
+    closeModalWindow(profileEditPopup);
+    closeModalWindow(addCardPopup);
+    closeModalWindow(previewModal);
+  }
+}
+
 function renderCard(cardElement, container) {
   cardList.prepend(cardElement);
 }
@@ -88,6 +96,15 @@ profileCloseBtn.addEventListener("click", () =>
 addCardButton.addEventListener("click", () => openModalWindow(addCardPopup));
 addCloseBtn.addEventListener("click", () => closeModalWindow(addCardPopup));
 previewClose.addEventListener("click", () => closeModalWindow(previewModal));
+
+document.addEventListener("click", closeModalWithOverlay);
+document.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    closeModalWindow(profileEditPopup);
+    closeModalWindow(addCardPopup);
+    closeModalWindow(previewModal);
+  }
+});
 
 //forms
 const profileFormElement = document.querySelector("#edit-form");
