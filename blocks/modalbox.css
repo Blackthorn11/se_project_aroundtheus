@@ -87,14 +87,19 @@
   width: 358px;
   height: 50.15px;
   margin: 48px 36px 36px 36px;
-  cursor: pointer;
   padding: 0;
 }
 
+.modal__form-button:hover:not(.modal__form-button_disabled) {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 .modal__form-button_disabled {
-  opacity: 0.2;
   border: 1px solid #000000;
   border-radius: 2px;
+  opacity: 0.2;
+  cursor: default;
 }
 
 .modal__exit-button {

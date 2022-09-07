@@ -16,15 +16,16 @@ class Card {
     return cardElement;
   }
 
-  _handleLike() {
+  _handleLike = () => {
     this._cardLikeButton.classList.toggle("card__like-button_on");
-  }
+  };
 
-  _handleDelete() {
+  _handleDelete = () => {
     this._element.remove();
-  }
+    this._element = null;
+  };
 
-  _handlePreview() {
+  _handlePreview = () => {
     const previewModal = document.querySelector("#image-preview");
     const previewImage = previewModal.querySelector(".modal__preview-image");
     const previewTitle = previewModal.querySelector(".modal__preview-title");
@@ -33,21 +34,19 @@ class Card {
     previewImage.alt = this._name;
     previewTitle.textContent = this._name;
     openModalWindow(previewModal);
-  }
+  };
 
   _setEventListeners() {
     this._cardLikeButton = this._element.querySelector(".card__like-button");
-    this._cardLikeButton.addEventListener("click", () => this._handleLike());
+    this._cardLikeButton.addEventListener("click", this._handleLike);
 
     this._cardDeleteButton = this._element.querySelector(
       ".card__delete-button"
     );
-    this._cardDeleteButton.addEventListener("click", () =>
-      this._handleDelete()
-    );
+    this._cardDeleteButton.addEventListener("click", this._handleDelete);
 
-    this._cardImage = this._element.querySelector(".card__image");
-    this._cardImage.addEventListener("click", () => this._handlePreview());
+    const cardImage = this._element.querySelector(".card__image");
+    cardImage.addEventListener("click", this._handlePreview);
   }
 
   generateCard() {

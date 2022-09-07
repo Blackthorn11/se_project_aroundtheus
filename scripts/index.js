@@ -44,7 +44,6 @@ const addCardButton = document.querySelector("#openModal2");
 const profileCloseBtn = document.querySelector("#profileExitBtn");
 const addCloseBtn = document.querySelector("#addExitBtn");
 const previewClose = document.querySelector("#image-preview_close");
-const addCardSubmit = addCardPopup.querySelector("#addcard_submit");
 
 //forms
 const profileFormElement = document.querySelector("#edit-form");
@@ -89,8 +88,7 @@ addFormElement.addEventListener("submit", (evt) => {
   };
   renderCard(createCard(cardObj));
   addFormElement.reset();
-  addCardSubmit.classList.add("modal__form-button_disabled");
-  addCardSubmit.disabled = true;
+  addFormValidator.toggleButtonState();
   closeModalWindow(addCardPopup);
 });
 

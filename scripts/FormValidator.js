@@ -33,15 +33,13 @@ class FormValidator {
     }
   }
 
-  _toggleButtonState() {
-    let foundInvalid = false;
-    this._inputEls.forEach((inputEl) => {
-      if (!inputEl.validity.valid) {
-        foundInvalid = true;
-      }
-    });
+  _checkFormValidity = () =>
+    this._inputEls.every((input) => input.validity.valid);
 
-    if (foundInvalid) {
+  toggleButtonState() {
+    const isFormValid = this._checkFormValidity();
+
+    if (!isFormValid) {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
     } else {
@@ -54,7 +52,7 @@ class FormValidator {
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }
