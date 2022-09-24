@@ -5,21 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the US</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
   </head>
   <body class="page">
     <main class="content">
       <header class="header">
         <img
           alt="Around The US logo"
-          src="./images/AroundTheUS.svg"
+          src="<%=require('./images/AroundTheUS.svg')%>"
           class="header__logo"
         />
       </header>
       <section class="profile">
         <img
           alt="Avatar"
-          src="./images/jacques-cousteau.jpg"
+          src="<%=require('./images/jacques-cousteau.jpg')%>"
           class="profile__image"
         />
         <div class="profile__text">
@@ -51,7 +51,7 @@
       <div class="modal__container">
         <button type="button" class="modal__exit-button" id="profileExitBtn">
           <img
-            src="./images/Close-icon.svg"
+            src="<%=require('./images/Close-icon.svg')%>"
             alt="exit button"
             class="modal__exit-button-image"
           />
@@ -96,7 +96,7 @@
       <div class="modal__container">
         <button type="button" class="modal__exit-button" id="addExitBtn">
           <img
-            src="./images/Close-icon.svg"
+            src="<%=require('./images/Close-icon.svg')%>"
             alt="exit button"
             class="modal__exit-button-image"
           />
@@ -150,7 +150,7 @@
           type="button"
         >
           <img
-            src="./images/Close-icon.svg"
+            src="<%=require('./images/Close-icon.svg')%>"
             alt="exit button"
             class="modal__exit-button-image"
           />
@@ -161,6 +161,5 @@
         </div>
       </div>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

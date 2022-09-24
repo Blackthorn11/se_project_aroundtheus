@@ -1,11 +1,12 @@
-import { openModalWindow } from "./utils.js";
-
 class Card {
-  constructor(data, cardSelector) {
+  constructor({ data, handlePreview }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
 
     this._cardSelector = cardSelector;
+
+    this._data = data;
+    this._handlePreview = handlePreview;
   }
 
   _getTemplate() {
@@ -25,17 +26,6 @@ class Card {
     this._element = null;
   };
 
-  _handlePreview = () => {
-    const previewModal = document.querySelector("#image-preview");
-    const previewImage = previewModal.querySelector(".modal__preview-image");
-    const previewTitle = previewModal.querySelector(".modal__preview-title");
-
-    previewImage.src = this._link;
-    previewImage.alt = this._name;
-    previewTitle.textContent = this._name;
-    openModalWindow(previewModal);
-  };
-
   _setEventListeners() {
     this._cardLikeButton = this._element.querySelector(".card__like-button");
     this._cardLikeButton.addEventListener("click", this._handleLike);
@@ -45,13 +35,21 @@ class Card {
     );
     this._cardDeleteButton.addEventListener("click", this._handleDelete);
 
-    const cardImage = this._element.querySelector(".card__image");
-    cardImage.addEventListener("click", this._handlePreview);
+    this._cardImage = this._element.querySelector(".card__image");
+    this._cardImage.addEventListener("click", () =>
+      this._handlePreview(this._data)
+    );
   }
 
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
+
+    this._cardLikeButton = this._element.querySelector(".card__like-button");
+    this._cardDeleteButton = this._element.querySelector(
+      ".card__delete-button"
+    );
+    this._cardImage = this._element.querySelector(".card__image");
 
     const cardImage = this._element.querySelector(".card__image");
     const cardTitle = this._element.querySelector(".card__title");
