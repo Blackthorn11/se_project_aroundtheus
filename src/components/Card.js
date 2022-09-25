@@ -27,15 +27,8 @@ class Card {
   };
 
   _setEventListeners() {
-    this._cardLikeButton = this._element.querySelector(".card__like-button");
     this._cardLikeButton.addEventListener("click", this._handleLike);
-
-    this._cardDeleteButton = this._element.querySelector(
-      ".card__delete-button"
-    );
     this._cardDeleteButton.addEventListener("click", this._handleDelete);
-
-    this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.addEventListener("click", () =>
       this._handlePreview(this._data)
     );
@@ -43,20 +36,19 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
 
     this._cardLikeButton = this._element.querySelector(".card__like-button");
     this._cardDeleteButton = this._element.querySelector(
       ".card__delete-button"
     );
     this._cardImage = this._element.querySelector(".card__image");
+    this._cardTitle = this._element.querySelector(".card__title");
 
-    const cardImage = this._element.querySelector(".card__image");
-    const cardTitle = this._element.querySelector(".card__title");
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._cardTitle.textContent = this._name;
 
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
-    cardTitle.textContent = this._name;
+    this._setEventListeners();
 
     return this._element;
   }

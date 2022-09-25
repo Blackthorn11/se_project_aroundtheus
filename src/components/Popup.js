@@ -30,7 +30,7 @@ export default class Popup {
 
   _closePopupWithOverlay(evt) {
     if (evt.target.classList.contains("modal_opened")) {
-      this.close(evt.target);
+      this.close();
     }
   }
 }

@@ -17,7 +17,9 @@ import {
   profileName,
   profileDescription,
   validationConfig,
-} from "../components/constants.js";
+  nameInput,
+  jobInput,
+} from "../utils/constants";
 
 //create instances of the classes and init.
 const createCard = (cardObj) => {
@@ -40,8 +42,8 @@ const cardSection = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      const CardEl = createCard(data);
-      cardSection.addItems(CardEl);
+      const cardEl = createCard(data);
+      cardSection.addItems(cardEl);
     },
   },
   ".cards__list"
@@ -63,7 +65,6 @@ const addFormValidator = new FormValidator(
 addFormValidator.enableValidation();
 
 addCardButton.addEventListener("click", () => {
-  addForm.formReset();
   addFormValidator.toggleButtonState();
   addForm.open();
 });
@@ -81,8 +82,8 @@ profileForm.setEventListeners();
 
 editProfileButton.addEventListener("click", () => {
   const { userName, userJob } = newUserInfo.getUserInfo();
-  profileName.value = userName;
-  profileDescription.value = userJob;
+  nameInput.value = userName;
+  jobInput.value = userJob;
   profileForm.open();
 });
 

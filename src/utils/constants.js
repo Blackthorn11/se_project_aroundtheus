@@ -11,8 +11,8 @@ const addCloseBtn = document.querySelector("#addExitBtn");
 //forms and inputs
 const profileFormElement = document.querySelector("#edit-form");
 const addFormElement = document.querySelector("#add-form");
-const nameInput = document.querySelector("#nameInput");
-const jobInput = document.querySelector("#jobInput");
+export const nameInput = document.querySelector("#nameInput");
+export const jobInput = document.querySelector("#jobInput");
 
 //user info
 export const profileName = document.querySelector(".profile__title");
