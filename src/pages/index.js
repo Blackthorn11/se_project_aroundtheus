@@ -49,7 +49,7 @@ const cardSection = new Section(
 cardSection.renderItems();
 
 const addForm = new PopupWithForm("#cardAdd", (data) => {
-  const newCard = { name: data.title, link: data[""] };
+  const newCard = { name: data.title, link: data.link };
   const newCardEl = createCard(newCard);
   cardSection.addItems(newCardEl);
   addForm.close();
@@ -63,31 +63,26 @@ const addFormValidator = new FormValidator(
 addFormValidator.enableValidation();
 
 addCardButton.addEventListener("click", () => {
+  addForm.formReset();
   addFormValidator.toggleButtonState();
   addForm.open();
 });
 
-function fillProfileForm() {
-  const { userName, userJob } = UserInfo.getUserInfo();
-  profileName.value = userName;
-  profileDescription.value = userJob;
-}
 const newUserInfo = new UserInfo({
-  nameSelector: profileName,
-  jobSelector: profileDescription,
+  nameElement: profileName,
+  jobElement: profileDescription,
 });
 
 const profileForm = new PopupWithForm(selectors.profilePopup, (data) => {
-  userInfo.setUserInfo({
-    userName: data.name,
-    userJob: data.description,
-  });
+  newUserInfo.setUserInfo(data);
   profileForm.close();
 });
 profileForm.setEventListeners();
 
 editProfileButton.addEventListener("click", () => {
-  fillProfileForm();
+  const { userName, userJob } = newUserInfo.getUserInfo();
+  profileName.value = userName;
+  profileDescription.value = userJob;
   profileForm.open();
 });
 

@@ -2,6 +2,7 @@ export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
     this._exitButton = this._popupElement.querySelector(".modal__exit-button");
+    this._handleEscUp = this._handleEscUp.bind(this);
   }
 
   _handleEscUp(evt) {
