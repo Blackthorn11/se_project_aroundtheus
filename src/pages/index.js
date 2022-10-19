@@ -7,10 +7,10 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import api from "../components/Api.js";
 
 //import constants
 import {
-  initialCards,
   selectors,
   editProfileButton,
   addCardButton,
@@ -38,23 +38,39 @@ const createCard = (cardObj) => {
 const previewPopup = new PopupWithImage(selectors.previewPopup);
 previewPopup.setEventListeners();
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (data) => {
-      const cardEl = createCard(data);
-      cardSection.addItems(cardEl);
+api.getInitialCards().then((result) => {
+  const cardSection = new Section(
+    {
+      items: result,
+      renderer: (data) => {
+        const cardEl = createCard(data);
+        cardSection.addItems(cardEl);
+      },
     },
-  },
-  ".cards__list"
-);
-cardSection.renderItems();
+    ".cards__list"
+  );
+  cardSection.renderItems();
+});
+
+// const cardSection = new Section(
+//   {
+//     items: initialCards,
+//     renderer: (data) => {
+//       const cardEl = createCard(data);
+//       cardSection.addItems(cardEl);
+//     },
+//   },
+//   ".cards__list"
+// );
+// cardSection.renderItems();
 
 const addForm = new PopupWithForm("#cardAdd", (data) => {
   const newCard = { name: data.title, link: data.link };
-  const newCardEl = createCard(newCard);
-  cardSection.addItems(newCardEl);
-  addForm.close();
+  api.addNewCard(newCard).then((result) => {
+    const newCardEl = createCard(result);
+    cardSection.addItems(newCardEl);
+    addForm.close();
+  });
 });
 addForm.setEventListeners();
 
@@ -75,9 +91,12 @@ const newUserInfo = new UserInfo({
 });
 
 const profileForm = new PopupWithForm(selectors.profilePopup, (data) => {
-  newUserInfo.setUserInfo(data);
-  profileForm.close();
+  api.updateProfileData(data.name, data.description).then(() => {
+    newUserInfo.setUserInfo(data);
+    profileForm.close();
+  });
 });
+
 profileForm.setEventListeners();
 
 editProfileButton.addEventListener("click", () => {
@@ -92,3 +111,8 @@ const editFormValidator = new FormValidator(
   selectors.profileForm
 );
 editFormValidator.enableValidation();
+
+api.getProfileData().then((result) => {
+  profileName.textContent = result.name;
+  profileDescription.textContent = result.about;
+});
