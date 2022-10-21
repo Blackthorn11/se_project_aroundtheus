@@ -41,8 +41,7 @@ class Card {
   }
 
   _renderLikes() {
-    this._element.querySelector(".card__like-count").textContent =
-      this._likes.length;
+    this._likesCount.textContent = this._likes.length;
     if (this.cardLiked()) {
       this._cardLikeButton.classList.add("card__like-button_on");
     } else {
@@ -76,7 +75,7 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-
+    this._likesCount = this._element.querySelector(".card__like-count");
     this._cardLikeButton = this._element.querySelector(".card__like-button");
     this._cardDeleteButton = this._element.querySelector(
       ".card__delete-button"

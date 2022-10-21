@@ -85,29 +85,48 @@ const createCard = (data) => {
 const previewPopup = new PopupWithImage(selectors.previewPopup);
 previewPopup.setEventListeners();
 
-api.getInitialCards().then((result) => {
-  cardSection = new Section(
-    {
-      items: result,
-      renderer: (data) => {
-        const cardEl = createCard(data);
-        cardSection.addItems(cardEl);
+// get web server info, cards and user data.
+api
+  .getWebpageInfo()
+  .then(([cardData, userData]) => {
+    userId = userData._id;
+    cardSection = new Section(
+      {
+        items: cardData,
+        renderer: (data) => {
+          const cardEl = createCard(data);
+          cardSection.addItems(cardEl);
+        },
       },
-    },
-    ".cards__list"
+      ".cards__list"
+    );
+    cardSection.renderItems();
+    newUserInfo.setUserInfo({
+      name: userData.name,
+      description: userData.about,
+    });
+    newUserInfo.setUserAvatar(userData.avatar);
+  })
+  .catch((err) =>
+    console.log(
+      `An error occurred when loading initial user and card data: ${err}`
+    )
   );
-  cardSection.renderItems();
-});
 
 const addForm = new PopupWithForm("#cardAdd", (data) => {
   const newCard = { name: data.title, link: data.link };
   addForm.renderLoading(true);
-  api.addNewCard(newCard).then((result) => {
-    const newCardEl = createCard(result);
-    cardSection.prependItem(newCardEl);
-    addForm.close();
-    addForm.renderLoading(false);
-  });
+  api
+    .addNewCard(newCard)
+    .then((result) => {
+      const newCardEl = createCard(result);
+      cardSection.prependItem(newCardEl);
+      addForm.close();
+    })
+    .catch((err) =>
+      console.log(`An error occurred when loading new card data: ${err}`)
+    )
+    .finally(() => addForm.renderLoading(false));
 });
 addForm.setEventListeners();
 addCardButton.addEventListener("click", () => {
@@ -129,11 +148,16 @@ const newUserInfo = new UserInfo({
 
 const profileForm = new PopupWithForm(selectors.profilePopup, (data) => {
   profileForm.renderLoading(true);
-  api.updateProfileData(data.name, data.description).then(() => {
-    newUserInfo.setUserInfo(data);
-    profileForm.close();
-    profileForm.renderLoading(false);
-  });
+  api
+    .updateProfileData(data.name, data.description)
+    .then(() => {
+      newUserInfo.setUserInfo(data);
+      profileForm.close();
+    })
+    .catch((err) =>
+      console.log(`An error occurred when loading user profile data: ${err}`)
+    )
+    .finally(() => profileForm.renderLoading(false));
 });
 
 profileForm.setEventListeners();
@@ -151,21 +175,19 @@ const editFormValidator = new FormValidator(
 );
 editFormValidator.enableValidation();
 
-api.getProfileData().then((result) => {
-  userId = result._id;
-  profileName.textContent = result.name;
-  profileDescription.textContent = result.about;
-  profileAvatar.src = result.avatar;
-});
-
 const updateAvatarForm = new PopupWithForm(selectors.avatarPopup, (data) => {
-  const avatarLink = data.avatar_link;
+  const avatarLink = data.avatar;
   updateAvatarForm.renderLoading(true);
-  api.setUserAvatar(avatarLink).then((data) => {
-    newUserInfo.setUserAvatar(avatarLink);
-    updateAvatarForm.close();
-    updateAvatarForm.renderLoading(false);
-  });
+  api
+    .setUserAvatar(avatarLink)
+    .then((data) => {
+      newUserInfo.setUserAvatar(avatarLink);
+      updateAvatarForm.close();
+    })
+    .catch((err) =>
+      console.log(`An error occured when loading avatar data: ${err}`)
+    )
+    .finally(() => updateAvatarForm.renderLoading(false));
 });
 
 const avatarFormValidator = new FormValidator(

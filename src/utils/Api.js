@@ -10,11 +10,21 @@ export default class Api {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`);
   }
 
+  getInitialCards = () => {
+    return fetch(`${this.url}/cards`, {
+      headers: this.headers,
+    }).then(this._checkServerResponse);
+  };
+
   getProfileData = () => {
     return fetch(`${this.url}/users/me`, {
       headers: this.headers,
     }).then(this._checkServerResponse);
   };
+
+  getWebpageInfo() {
+    return Promise.all([this.getInitialCards(), this.getProfileData()]);
+  }
 
   updateProfileData = (name, about) => {
     return fetch(`${this.url}/users/me`, {
@@ -24,12 +34,6 @@ export default class Api {
         name,
         about,
       }),
-    }).then(this._checkServerResponse);
-  };
-
-  getInitialCards = () => {
-    return fetch(`${this.url}/cards`, {
-      headers: this.headers,
     }).then(this._checkServerResponse);
   };
 
