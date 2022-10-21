@@ -30,15 +30,27 @@
   overflow: hidden;
   max-width: 210px;
 }
+
+.card__like-container {
+  margin: 0 18px 0 0;
+}
+.card__like-count {
+  color: black;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  margin: 0;
+  margin-top: 3px;
+}
 .card__like-button {
-  margin-right: 30px;
   background-image: url(../images/like.svg);
-  background-position: center;
   background-repeat: no-repeat;
-  min-width: 21px;
   border: none;
+  background-position: 50%;
+  height: 19px;
   background-color: white;
-  padding: 0;
+  width: 21px;
+  margin-top: 22px;
 }
 .card__like-button_on {
   background-image: url(../images/Union.svg);
@@ -64,4 +76,8 @@
 .card__delete-button:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+
+.card__delete-button-hidden {
+  display: none;
 }

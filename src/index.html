@@ -17,11 +17,15 @@
         />
       </header>
       <section class="profile">
-        <img
-          alt="Avatar"
-          src="<%=require('./images/jacques-cousteau.jpg')%>"
-          class="profile__image"
-        />
+        <div class="profile__avatar">
+          <img alt="Avatar" src="" class="profile__image" />
+          <button type="button" class="profile__image-edit">
+            <img
+              alt="Avatar edit button"
+              src="<%=require('./images/EditAvatar.png')%>"
+            />
+          </button>
+        </div>
         <div class="profile__text">
           <div class="profile__text-button">
             <h1 class="profile__title"></h1>
@@ -38,7 +42,10 @@
               <img alt="" class="card__image" src=" " />
               <h2 class="card__title"></h2>
               <button type="button" class="card__delete-button"></button>
-              <button type="button" class="card__like-button"></button>
+              <div class="card__like-container">
+                <button type="button" class="card__like-button"></button>
+                <p class="card__like-count">0</p>
+              </div>
             </li>
           </template>
         </ul>
@@ -138,6 +145,54 @@
             >
               Create
             </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="delete-card">
+      <div class="modal__container">
+        <button type="button" class="modal__exit-button" id="cardDelExitBtn">
+          <img
+            src="<%=require('./images/Close-icon.svg')%>"
+            alt="exit button"
+            class="modal__exit-button-image"
+          />
+        </button>
+        <form class="modal__form" id="confirm-delete">
+          <h3 class="modal__form-title modal__form-delete">Are you sure?</h3>
+          <fieldset class="modal__form-fieldset">
+            <button id="delete-button" type="submit" class="modal__form-button">
+              Yes
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="edit-avatar">
+      <div class="modal__container">
+        <button type="button" class="modal__exit-button" id="avatarExitBtn">
+          <img
+            src="<%=require('./images/Close-icon.svg')%>"
+            alt="exit button"
+            class="modal__exit-button-image"
+          />
+        </button>
+        <form class="modal__form" id="edit-avatar-form">
+          <h3 class="modal__form-title">Change profile picture</h3>
+          <fieldset class="modal__form-fieldset">
+            <input
+              type="url"
+              class="modal__form-input"
+              name="avatar-link"
+              value=""
+              required
+              id="profile-link"
+              placeholder="Avatar link"
+            />
+            <span class="modal__error" id="profile-link-error"></span>
+          </fieldset>
+          <fieldset class="modal__form-fieldset">
+            <button type="submit" class="modal__form-button">Save</button>
           </fieldset>
         </form>
       </div>

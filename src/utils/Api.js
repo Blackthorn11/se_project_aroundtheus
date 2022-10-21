@@ -1,7 +1,6 @@
-// TOKEN = "f0f5b035-9e61-4cc2-926f-83804fb546a7"; group-12
-import { apiConfig } from "../utils/constants.js";
+// TOKEN = "7fc5c4b5-810f-422d-8040-d6c41ae3f41e"; group-12
 
-class Api {
+export default class Api {
   constructor(config) {
     this.url = config.baseUrl;
     this.headers = config.headers;
@@ -33,8 +32,8 @@ class Api {
         }),
       })
         .then((res) => res.json())
-        .then(() => {
-          resolve();
+        .then((res) => {
+          resolve(res);
         })
         .catch((err) => {
           reject(err);
@@ -68,44 +67,14 @@ class Api {
         }),
       })
         .then((res) => res.json())
-        .then(() => {
-          resolve();
+        .then((data) => {
+          resolve(data);
         })
         .catch((err) => {
           reject(err);
         });
     });
   };
-  addLike(id) {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/cards/likes/${id}`, {
-        method: "PUT",
-        headers: this.headers,
-      })
-        .then((res) => res.json())
-        .then(() => {
-          resolve();
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-  }
-  removeLike(id) {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/cards/likes/${id}`, {
-        method: "DELETE",
-        headers: this.headers,
-      })
-        .then((res) => res.json())
-        .then(() => {
-          resolve();
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-  }
   deleteCard(id) {
     return new Promise((resolve, reject) => {
       fetch(`${this.url}/cards/${id}`, {
@@ -121,13 +90,29 @@ class Api {
         });
     });
   }
-  updateProfilePic(url) {
+  changeLikeStatus(id, like) {
+    return new Promise((resolve, reject) => {
+      fetch(`${this.url}/cards/likes/${id}`, {
+        method: like ? "PUT" : "DELETE",
+        headers: this.headers,
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  setUserAvatar(avatar) {
     return new Promise((resolve, reject) => {
       fetch(`${this.url}/users/me/avatar`, {
         method: "PATCH",
         headers: this.headers,
         body: JSON.stringify({
-          avatar: url,
+          avatar,
         }),
       })
         .then((res) => res.json())
@@ -140,6 +125,3 @@ class Api {
     });
   }
 }
-
-const api = new Api(apiConfig);
-export default api;

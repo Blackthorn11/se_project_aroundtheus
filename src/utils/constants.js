@@ -5,6 +5,7 @@ const addCardPopup = document.querySelector("#cardAdd");
 //buttons
 export const editProfileButton = document.querySelector("#openModal");
 export const addCardButton = document.querySelector("#openModal2");
+export const avatarEditButton = document.querySelector(".profile__image-edit");
 const profileCloseBtn = document.querySelector("#profileExitBtn");
 const addCloseBtn = document.querySelector("#addExitBtn");
 
@@ -19,6 +20,7 @@ export const profileName = document.querySelector(".profile__title");
 export const profileDescription = document.querySelector(
   ".profile__description"
 );
+export const profileAvatar = document.querySelector(".profile__image");
 
 // // initial data
 // export const initialCards = [
@@ -57,6 +59,9 @@ export const selectors = {
   cardTemplate: "#cardTemplate",
   userNameSelector: ".profile__title",
   userJobSelector: ".profile__description",
+  avatarPopup: "#edit-avatar",
+  avatarForm: "#edit-avatar-form",
+  deletePopup: "#delete-card",
 };
 
 //validation config
@@ -72,7 +77,7 @@ export const validationConfig = {
 export const apiConfig = {
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   headers: {
-    authorization: "f0f5b035-9e61-4cc2-926f-83804fb546a7",
+    authorization: "7fc5c4b5-810f-422d-8040-d6c41ae3f41e",
     "Content-Type": "application/json",
   },
 };
