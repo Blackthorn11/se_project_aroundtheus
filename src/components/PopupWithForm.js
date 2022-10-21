@@ -33,11 +33,10 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    super.setEventListeners();
     this._formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      const inputValue = this._getInputValues();
-      this._handleSubmit(inputValue);
+      this._handleSubmit(this._getInputValues());
     });
+    super.setEventListeners();
   }
 }

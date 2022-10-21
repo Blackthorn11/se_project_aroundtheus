@@ -6,122 +6,78 @@ export default class Api {
     this.headers = config.headers;
   }
 
+  _checkServerResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`);
+  }
+
   getProfileData = () => {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/users/me`, {
-        headers: this.headers,
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          resolve(result);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+    return fetch(`${this.url}/users/me`, {
+      headers: this.headers,
+    }).then(this._checkServerResponse);
   };
 
   updateProfileData = (name, about) => {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/users/me`, {
-        method: "PATCH",
-        headers: this.headers,
-        body: JSON.stringify({
-          name,
-          about,
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+    return fetch(`${this.url}/users/me`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        name,
+        about,
+      }),
+    }).then(this._checkServerResponse);
   };
 
   getInitialCards = () => {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/cards`, {
-        headers: this.headers,
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          resolve(result);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+    return fetch(`${this.url}/cards`, {
+      headers: this.headers,
+    }).then(this._checkServerResponse);
   };
 
   addNewCard = (data) => {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/cards`, {
-        method: "POST",
-        headers: this.headers,
-        body: JSON.stringify({
-          name: data.name,
-          link: data.link,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          resolve(data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+    return fetch(`${this.url}/cards`, {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      }),
+    }).then(this._checkServerResponse);
   };
+
   deleteCard(id) {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/cards/${id}`, {
-        method: "DELETE",
-        headers: this.headers,
-      })
-        .then((res) => res.json())
-        .then(() => {
-          resolve();
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+    return fetch(`${this.url}/cards/${id}`, {
+      method: "DELETE",
+      headers: this.headers,
+    }).then(this._checkServerResponse);
   }
-  changeLikeStatus(id, like) {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/cards/likes/${id}`, {
-        method: like ? "PUT" : "DELETE",
-        headers: this.headers,
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          resolve(res);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+
+  addLike(id) {
+    return fetch(`${this.url}/cards/likes/${id}`, {
+      headers: this._headers,
+      method: "PUT",
+    }).then(this._checkServerResponse);
+  }
+
+  removeLike(id) {
+    return fetch(`${this.url}/cards/likes/${id}`, {
+      headers: this._headers,
+      method: "DELETE",
+    }).then(this._checkServerResponse);
+  }
+
+  getLikes(id) {
+    return fetch(`${this.url}/cards/likes/${id}`, {
+      headers: this._headers,
+    }).then(this._checkServerResponse);
   }
 
   setUserAvatar(avatar) {
-    return new Promise((resolve, reject) => {
-      fetch(`${this.url}/users/me/avatar`, {
-        method: "PATCH",
-        headers: this.headers,
-        body: JSON.stringify({
-          avatar,
-        }),
-      })
-        .then((res) => res.json())
-        .then(() => {
-          resolve();
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
+    return fetch(`${this.url}/users/me/avatar/`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then(this._checkServerResponse);
   }
 }
