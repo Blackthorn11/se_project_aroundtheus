@@ -65,12 +65,6 @@ export default class Api {
     }).then(this._checkServerResponse);
   }
 
-  getLikes(id) {
-    return fetch(`${this.url}/cards/likes/${id}`, {
-      headers: this._headers,
-    }).then(this._checkServerResponse);
-  }
-
   setUserAvatar(avatar) {
     return fetch(`${this.url}/users/me/avatar/`, {
       method: "PATCH",
